@@ -14,7 +14,7 @@ export function MonthRevenueCard() {
 
         <p className="text-xs text-muted-foreground">
           <span className="text-emerald-500 dark:text-emerald-400">+2%</span> em
-          relação ao mês anterior
+          relação ao mês passado
         </p>
       </CardContent>
     </Card>
