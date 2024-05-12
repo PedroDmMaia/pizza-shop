@@ -1,10 +1,12 @@
 import { Label } from '@radix-ui/react-label'
+import { useMutation } from '@tanstack/react-query'
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
+import { singIn } from '@/api/sin-in'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 
@@ -21,17 +23,23 @@ export function SingIn() {
     formState: { isSubmitting },
   } = useForm<SingInForm>()
 
+  const { mutateAsync: authenticate } = useMutation({
+    mutationFn: singIn,
+  })
+
   async function handleSingIn(data: SingInForm) {
-    console.log(data)
+    try {
+      await authenticate({ email: data.email })
 
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-
-    toast.success('Enviamos um link de autenticação para seu e-mail.', {
-      action: {
-        label: 'Reenviar',
-        onClick: () => handleSingIn(data),
-      },
-    })
+      toast.success('Enviamos um link de autenticação para seu e-mail.', {
+        action: {
+          label: 'Reenviar',
+          onClick: () => handleSingIn(data),
+        },
+      })
+    } catch (error) {
+      toast.error('Credenciais inválidas')
+    }
   }
 
   return (
