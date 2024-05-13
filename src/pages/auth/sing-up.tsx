@@ -1,10 +1,12 @@
 import { Label } from '@radix-ui/react-label'
+import { useMutation } from '@tanstack/react-query'
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
+import { resgisterRestaurant } from '@/api/resgister-restaurant'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 
@@ -26,16 +28,23 @@ export function SingUp() {
     formState: { isSubmitting },
   } = useForm<SingUpForm>()
 
-  async function handleSingUp(data: SingUpForm) {
-    try {
-      console.log(data)
+  const { mutateAsync: registerRestaurantFn } = useMutation({
+    mutationFn: resgisterRestaurant,
+  })
 
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+  async function handleSingUp({
+    email,
+    managerName,
+    restaurantName,
+    phone,
+  }: SingUpForm) {
+    try {
+      await registerRestaurantFn({ email, managerName, restaurantName, phone })
 
       toast.success('restaurante castrado com sucesso!', {
         action: {
           label: 'Login',
-          onClick: () => navigate('/sin-in'),
+          onClick: () => navigate(`/sing-in?email=${email}`),
         },
       })
     } catch {
