@@ -53,7 +53,7 @@ export function SingIn() {
       <Helmet title="Login" />
       <div className="p-8">
         <Button variant="ghost" asChild className="absolute right-8 top-8">
-          <Link to="/sing-up">Novo estabelecimento</Link>
+          <Link to="/sign-up">Novo estabelecimento</Link>
         </Button>
 
         <div className="flex w-[350px] flex-col justify-center gap-6">

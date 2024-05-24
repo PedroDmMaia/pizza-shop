@@ -44,7 +44,7 @@ export function SingUp() {
       toast.success('restaurante castrado com sucesso!', {
         action: {
           label: 'Login',
-          onClick: () => navigate(`/sing-in?email=${email}`),
+          onClick: () => navigate(`/sign-in?email=${email}`),
         },
       })
     } catch {
@@ -57,7 +57,7 @@ export function SingUp() {
       <Helmet title="Cadastro" />
       <div className="p-8">
         <Button variant="ghost" asChild className="absolute right-8 top-8">
-          <Link to="/sing-in">Novo estabelecimento</Link>
+          <Link to="/sign-in">Novo estabelecimento</Link>
         </Button>
 
         <div className="flex w-[350px] flex-col justify-center gap-6">

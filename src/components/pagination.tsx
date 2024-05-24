@@ -24,12 +24,12 @@ export function Pagination({
   return (
     <div className="flex items-center justify-between">
       <span className="text-sm text-muted-foreground">
-        Total de {totalCount} de items(s)
+        Total de {totalCount} items(s)
       </span>
 
       <div className="flex items-center gap-6 lg:gap-8">
         <div>
-          Pagina {pageIndex + 1} de {pages}
+          Página {pageIndex + 1} de {pages}
         </div>
 
         <div className="flex items-center gap-2">
@@ -60,7 +60,7 @@ export function Pagination({
             disabled={pages <= pageIndex + 1}
           >
             <ChevronRight className="h-4 w-4" />
-            <span className="sr-only">Proxima página</span>
+            <span className="sr-only">Próxima página</span>
           </Button>
 
           <Button
